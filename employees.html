@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.querySelector('form').onsubmit = function() {
+                fetch('https://dummy.restapiexample.com/api/v1/employees')
+                .then(response => response.json())
+                .then(mydata => {
+                    const my_id = document.querySelector('#employee_id').value;
+                    console.log(mydata.data[my_id].id);
+                    const my_name = mydata.data[my_id].employee_name;
+                    document.querySelector('body').innerHTML = my_name + " is employee #" + my_id + ", with a salary of " + mydata.data[my_id].employee_salary;
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                });
+                return false;
+            }
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <input id="employee_id" placeholder="Employee ID" type="text">
+        <input type="submit" value="Show employee details">
+    </form>
+    <div id=""result">
+    </div>
+</body>
+</html>
