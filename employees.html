@@ -11,12 +11,18 @@
                 fetch('https://dummy.restapiexample.com/api/v1/employees')
                 .then(response => response.json())
                 .then(mydata => {
+                    console.log(mydata);
                     const my_id = document.querySelector('#employee_id').value;
-                    console.log(mydata.data[my_id].id);
-                    const my_name = mydata.data[my_id].employee_name;
-                    document.querySelector('body').innerHTML = my_name + " is employee #" + my_id + ", with a salary of " + mydata.data[my_id].employee_salary;
+                    if (my_id < 0 || my_id > 23){
+                        document.querySelector('body').innerHTML = "No such employee ID = " + my_id;
+                    } else {
+                        const my_name = mydata.data[my_id - 1].employee_name;
+                        const my_age = mydata.data[my_id - 1].employee_age;
+                        document.querySelector('body').innerHTML = my_name + " is employee #" + my_id + ", with a salary of " + mydata.data[my_id - 1].employee_salary + ", their age is " + my_age;
+                    }                
                 })
                 .catch(error => {
+                    document.querySelector('body').innerHTML = "Too many requests to the server, wait for a few minutes before sending the next one.";
                     console.log('Error:', error);
                 });
                 return false;
