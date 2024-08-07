@@ -2,7 +2,7 @@
 const { test, expect } = require('@playwright/test');
 const exp = require('constants');
 
-test.only('doing some actions on demo website', async ({ page }) => {
+test('doing some actions on demo website', async ({ page }) => {
   await page.goto('https://automationintesting.online/');
 
   await page.getByRole('link', {name: 'home page'}).click();

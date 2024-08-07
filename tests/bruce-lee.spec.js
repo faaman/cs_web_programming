@@ -10,7 +10,7 @@ test('doing some actions on demo website', async ({ page }) => {
   await page.getByTitle('Search').fill('Bruce Lee');
   await page.getByRole('button', {name: 'Google Search'}).click();
   
-  await expect(page.getByText('The Legend of Bruce Lee'), 'The Legend of Bruce Lee').toBeVisible();
+  await page.getByText('The Legend of Bruce Lee', { exact: true }).click();
 
   await page.screenshot({ path: 'screenshot_bruce.png', fullPage: true });
 });
