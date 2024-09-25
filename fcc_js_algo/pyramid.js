@@ -7,7 +7,6 @@ function padRow(rowNumber, rowCount) {
   return " ".repeat(rowCount - rowNumber) + character.repeat(2 * rowNumber - 1) + " ".repeat(rowCount - rowNumber);
 }
 
-// TODO: use a different type of loop
 /*
 the below code works to generate a pyramid:
 for (let i = 1; i <= count; i++) {
